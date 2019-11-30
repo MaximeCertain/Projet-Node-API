@@ -1,0 +1,30 @@
+express => librarie avec de nombreuses fonctions permettant de faire x choses.
+babel => Javascirpt compiler
+
+au moins 4 models dans base (model utilisateur, et model type utilisateur imposés)
+composants header footer champs de recherche filtre
+liste obligatoire des models => READ
+selon user modifier les models, selon les miens mes articles
+en tant qu'admin modifier tous les articles
+
+
+
+dans routes => middleware  =>  helpers.auth([])
+table user => role
+
+
+role:{
+type: String,
+}
+
+si update
+
+readme git x2
+
+//React => librarie => cree par facebiik en 2013
+=> techno basé sur la virtual dom
+DOM => document object model, permet de creer l'interface graphique sur le navigateur
+virtual dom => au lieu de creer tout l'interface on enregistre en mémoire le js et le recree dynamiquement.
+
+tout peut etre composants ac react
+chaque composant peut discuter ac utres ou etr eindépendant, il a un cycle de vie. (avant création , , update pendnt apès)
