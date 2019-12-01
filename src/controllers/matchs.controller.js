@@ -126,9 +126,7 @@ class MatchController {
                         let bets = await Bet.find({cote: cote});
                         //pour chaque cote faire le tour des parieurs et leur attribuer les gains
                         bets.map(async bet => {
-                            console.log("ici");
                             try {
-                                console.log("ici2");
                                 let user = await User.findById(bet.user);
                                 let gain = (bet.amount * coteMatch.cote);
                                 user.capital = user.capital + gain;

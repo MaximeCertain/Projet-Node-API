@@ -19,6 +19,7 @@ const userSchema = new Schema({
     },
     capital: {
         type: Number,
+        default: 0
     },
     user_type: {
         type: Schema.Types.ObjectID,

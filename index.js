@@ -18,7 +18,7 @@ app.use(cors({origin: true}));
 
 //utilisation des routes
 app.use("/", router);
-const port = 3000;
+const port = 3001;
 
 database()
     .then(async () => {
