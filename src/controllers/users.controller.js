@@ -69,7 +69,6 @@ class UserController {
         try {
             let id = request.params.id;
             let user = await User.findByIdAndDelete(id);
-            //    await Post.deleteOne(id);
             body = {'message': 'user deleted'};
         } catch (error) {
             status = 500;
@@ -82,14 +81,15 @@ class UserController {
         let status = 200;
         let body = [];
         try {
-            let user = await User.findOne({email: request.body.email, password: request.body.password});
+            let user = await User.findOne({email: request.body.email, password: request.body.password}).populate('user_type');
+            console.log(user);
             body = {'user': user, 'message': 'connection successfull'};
         } catch (error) {
             status = 500;
             body = {'message': error.message};
         }
         return response.status(status).json(body);
-    }
+      }
 }
 
 export default UserController;
