@@ -14,19 +14,19 @@
 <p>Pour chaque match il peut ajouter jusqu'à 6 cotes. Ces dernières correspondent aux 6 types de cotes différentes </p>
 <p>Ces cotes peuvent aussi être modifiées.</p>
 <p>Une fois le match joué, l'administrateur doit indiquer son résultat dans l'interface du match. Ce match ne sera alors plus disponible dans la partie Paris des utilisateurs et les gains seront reversés aux gagnants</p>
-<p>Il peut </p>
+<p>Il peut filtrer les matchs selon le nom des équipes et accèder à leurs détails</p>
 
 
-#Installation
+<h1>Installation</h1>
 <p>Récupération back-end</p>
 <p>git clone https://github.com/MaximeCertain/Projet-Paris-Sportifs-BACK-node-</p>
 <p>Récupération base de données</p>
-<p>créer une base de données "collection" sur robo3t et y importer toutes les collections situées dans le dossier database du dossier back</p>
+<p>créer une base de données "paris" sur robo3t et y importer toutes les collections situées dans le dossier database du dossier back</p>
 <p>Récupération front-end</p>
 <p>https://github.com/MaximeCertain/Projet-Paris-Sportifs---FRONT-react-</p>
 
 <p>Se rendre à la racine du dossier back-end => npm install pour installer les dépendances.</p>
 <p>Se rendre à la racine du dossier front-end => npm install pour installer les dépendances.</p>
-<p>Lancer l'API => npm run start dans le dossier back-end</p> (port 3001)
-<p>lancer le front => npm start dans le dossier front-end </p> (port 3000)
+<p>Lancer l'API => npm run start dans le dossier back-end (port 3001)</p>
+<p>lancer le front => npm start dans le dossier front-end(port 3000)</p> 
 <p>http://localhost:3000/login</p>
