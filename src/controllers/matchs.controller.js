@@ -4,7 +4,12 @@ import Bet from "../models/Bet";
 import User from "../models/User";
 
 class MatchController {
-
+    /**
+     *
+     * @param request
+     * @param response
+     * @returns {Promise<*>}
+     */
     static async list(request, response) {
         let status = 200;
         let body = {};
@@ -25,6 +30,12 @@ class MatchController {
         return response.status(status).json(body);
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @returns {Promise<*>}
+     */
     static async create(request, response) {
         let status = 200;
         let body = {};
@@ -40,6 +51,12 @@ class MatchController {
         return response.status(status).json(body);
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @returns {Promise<*>}
+     */
     static async details(request, response) {
         let status = 200;
         let body = [];
@@ -61,6 +78,12 @@ class MatchController {
         return response.status(status).json(body);
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @returns {Promise<*>}
+     */
     static async update(request, response) {
         let status = 200;
         let body = [];
@@ -75,6 +98,12 @@ class MatchController {
         return response.status(status).json(body);
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @returns {Promise<*>}
+     */
     static async delete(request, response) {
         let status = 200;
         let body = [];
@@ -150,16 +179,22 @@ class MatchController {
                     //si cote validée, on retrouve les paris des users ayant parié dessus et on augmente leur capital selon leur mise
                     if (cote.validation === true) {
                         let bets = await Bet.find({cote: cote._id});
+
                         //pour chaque cote faire le tour des parieurs et leur attribuer les gains
-                        bets.map(async bet => {
-                            let user = await User.findById(bet.user)
-                            console.log("initial capital = " + user.capital);
-                            let gain = (bet.amount * cote.cote);
-                            console.log("gain = " + gain);
-                            user.capital = user.capital + gain;
-                            console.log("final capital = " + user.capital);
-                            await user.save();
-                        });
+                        async function synchroneIterations(bets) {
+                            await Promise.all(bets.map(async bet => {
+                                let user = await User.findById(bet.user)
+                                let gain = (bet.amount * cote.cote);
+                                user.capital = user.capital + gain;
+                                try {
+                                    await user.save();
+                                } catch (error) {
+                                    console.log(error);
+                                }
+                            }));
+                        }
+
+                        await synchroneIterations(bets);
                     }
                 } catch (error) {
                     console.log(error);

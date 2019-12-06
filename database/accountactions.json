@@ -1,0 +1,5 @@
+{"_id":{"$oid":"5deab3f774c3392f5fe4901f"},"amount":50,"type":"DEPOSIT","__v":0}
+{"_id":{"$oid":"5deabf6c2f3ef70d1d199021"},"amount":150,"type":"WITHDRAWAL","__v":0}
+{"_id":{"$oid":"5deac31cda76770f816a7fb3"},"amount":50,"type":"WITHDRAWAL","__v":0}
+{"_id":{"$oid":"5deac37ada76770f816a7fb5"},"amount":125,"type":"WITHDRAWAL","__v":0}
+{"_id":{"$oid":"5deac399da76770f816a7fb6"},"amount":30,"type":"DEPOSIT","__v":0}

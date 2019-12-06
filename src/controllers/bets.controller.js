@@ -15,6 +15,13 @@ class BetController {
         return response.status(status).json(body);
     }
 
+    /**
+     * Cree un pari pour une cote, un match et un utilisateur. Le capital de l'utilisateur doit etre suffisant
+     * ou un message d'erreur est généré
+     * @param request
+     * @param response
+     * @returns {Promise<*>}
+     */
     static async create(request, response) {
         let status = 200;
         let body = {};
@@ -47,6 +54,12 @@ class BetController {
         return response.status(status).json(body);
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @returns {Promise<*>}
+     */
     static async details(request, response) {
         let status = 200;
         let body = [];
@@ -61,6 +74,12 @@ class BetController {
         return response.status(status).json(body);
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @returns {Promise<*>}
+     */
     static async update(request, response) {
         let status = 200;
         let body = [];
@@ -75,6 +94,12 @@ class BetController {
         return response.status(status).json(body);
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @returns {Promise<*>}
+     */
     static async delete(request, response) {
         let status = 200;
         let body = [];

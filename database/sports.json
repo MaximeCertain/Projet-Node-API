@@ -1,0 +1,5 @@
+{"_id":{"$oid":"5ddfde46f2b3f039a4667fd3"},"label":"Football","__v":0}
+{"_id":{"$oid":"5de674feb76a780c43b559d8"},"label":"Cyclisme","__v":0}
+{"_id":{"$oid":"5de67508b76a780c43b559d9"},"label":"Basketball","__v":0}
+{"_id":{"$oid":"5de67d31b76a780c43b559da"},"label":"Baseball ","__v":0}
+{"_id":{"$oid":"5deab19074c3392f5fe48ff7"},"label":"Rugby","__v":0}

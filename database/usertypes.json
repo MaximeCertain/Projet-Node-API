@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5ddfc190f113672c480ad9f6"},"label":"ROLE_SUPER_ADMIN","__v":0}
+{"_id":{"$oid":"5ddfc19bf113672c480ad9f7"},"label":"ROLE_USER","__v":0}

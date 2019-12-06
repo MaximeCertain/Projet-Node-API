@@ -1,0 +1,6 @@
+{"_id":{"$oid":"5ddfe43283fdc53c8be65835"},"code":"1","label":"Equipe 1 gagne","rank":1,"__v":0}
+{"_id":{"$oid":"5ddfe44e83fdc53c8be65836"},"code":"2","label":"Equipe 2 gagne","rank":3,"__v":0}
+{"_id":{"$oid":"5ddfe45783fdc53c8be65837"},"code":"X","label":"Match nul","rank":2,"__v":0}
+{"_id":{"$oid":"5ddfe46083fdc53c8be65838"},"code":"1X","label":"Equipe 1 gagne ou match nul","rank":4,"__v":0}
+{"_id":{"$oid":"5de17af888480210ec1504d6"},"label":"Equipe 2 gagne ou match nul","code":"X2","rank":6,"__v":0}
+{"_id":{"$oid":"5de18c50ca5003c1c7e32496"},"code":"12","label":"Equipe 1 gagne ou Equipe 2 gagne","rank":5}
