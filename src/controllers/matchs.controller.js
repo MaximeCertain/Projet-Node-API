@@ -9,7 +9,14 @@ class MatchController {
         let status = 200;
         let body = {};
         try {
-            let matchs = await Match.find().populate('sport').populate('cotes');
+            let matchs = await Match.find().populate('sport').populate({
+                path: 'cotes',
+                model: 'Cote',
+                populate: {
+                    path: 'type',
+                    model: 'CoteType'
+                }
+            });
             body = {'matchs': matchs, 'message': 'List matchs'};
         } catch (error) {
             status = 500;
@@ -38,7 +45,14 @@ class MatchController {
         let body = [];
         try {
             let id = request.params.id;
-            let matchs = await Match.findById(id).populate('sport').populate('cotes');
+            let matchs = await Match.findById(id).populate('sport').populate({
+                path: 'cotes',
+                model: 'Cote',
+                populate: {
+                    path: 'type',
+                    model: 'CoteType'
+                }
+            });
             body = {'matchs': matchs, 'message': 'Details'};
         } catch (error) {
             status = 500;
@@ -75,22 +89,34 @@ class MatchController {
         return response.status(status).json(body);
     }
 
+    /**
+     * Met à jour le champs résultat de la table match, et attribue les gains aux vainqueurs des paris
+     * @param request
+     * @param response
+     * @returns {Promise<*>}
+     */
     static async giveResult(request, response) {
         let status = 200;
         let body = [];
         try {
             let id = request.params.id;
-            let match = await Match.findById(id);
+            let match = await Match.findById(id).populate({
+                path: 'cotes',
+                model: 'Cote',
+                populate: {
+                    path: 'type',
+                    model: 'CoteType'
+                }
+            });
             //updater le match avec champs resultat
             match.result = request.body.result;
             await match.save();
             //parcours cotes du match
             match.cotes.map(async cote => {
                 try {
-                    let coteMatch = await Cote.findById(cote).populate('type');
                     let validation = false;
                     //updater le champs boolean validation de la cote selon le résultat du match
-                    switch (coteMatch.type.code) {
+                    switch (cote.type.code) {
                         case "1":
                             match.result === "1" && (validation = true);
                             break;
@@ -118,29 +144,28 @@ class MatchController {
                         default:
                             validation = false;
                     }
-                    coteMatch.validation = validation;
+                    cote.validation = validation;
                     //sauvegarder le resultat de la cote
-                    await coteMatch.save();
+                    await cote.save();
                     //si cote validée, on retrouve les paris des users ayant parié dessus et on augmente leur capital selon leur mise
-                    if (coteMatch.validation === true) {
-                        let bets = await Bet.find({cote: cote});
+                    if (cote.validation === true) {
+                        let bets = await Bet.find({cote: cote._id});
                         //pour chaque cote faire le tour des parieurs et leur attribuer les gains
                         bets.map(async bet => {
-                            try {
-                                let user = await User.findById(bet.user);
-                                let gain = (bet.amount * coteMatch.cote);
-                                user.capital = user.capital + gain;
-                                await user.save();
-                            } catch (error) {
-                                console.log(error);
-                            }
+                            let user = await User.findById(bet.user)
+                            console.log("initial capital = " + user.capital);
+                            let gain = (bet.amount * cote.cote);
+                            console.log("gain = " + gain);
+                            user.capital = user.capital + gain;
+                            console.log("final capital = " + user.capital);
+                            await user.save();
                         });
                     }
                 } catch (error) {
                     console.log(error);
                 }
             });
-            body = {'message': 'match, cotes and user deleted'};
+            body = {'message': 'match, cotes and user updated'};
         } catch (error) {
             status = 500;
             body = {'message': error.message};

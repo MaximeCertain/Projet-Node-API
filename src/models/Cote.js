@@ -14,7 +14,8 @@ const coteSchema = new Schema({
         ref: 'Match'
     },
     validation:{
-        type: Boolean
+        type: Boolean,
+        default: null
     }
 });
 

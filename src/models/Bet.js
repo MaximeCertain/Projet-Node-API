@@ -16,6 +16,10 @@ const betSchema = new Schema({
     cote:{
         type: Schema.Types.ObjectID,
         ref: 'Cote'
+    },
+    match:{
+        type: Schema.Types.ObjectID,
+        ref: 'Match'
     }
 });
 

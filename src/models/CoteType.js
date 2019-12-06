@@ -9,6 +9,9 @@ const coteType = new Schema({
     code:{
         type:String,
         required: true
+    },
+    rank:{
+        type: Number
     }
 });
 

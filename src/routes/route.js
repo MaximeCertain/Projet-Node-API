@@ -43,6 +43,8 @@ router.put('/result/:id', MatchController.giveResult);
 
 //cotes
 router.get('/cotes', CoteController.list);
+router.get('/cotes/:id', CoteController.details);
+
 router.post('/matchs/:id/cotes', CoteController.create);
 router.put('/cotes/:id', CoteController.update);
 router.delete('/cotes/:id', CoteController.delete);
@@ -63,7 +65,7 @@ router.delete('/account_actions/:id', AccountActionsController.delete);
 
 //bets
 router.get('/bets', BetController.list);
-router.post('/users/:iduser/cotes/:idcote/bets', BetController.create);
+router.post('/users/:iduser/matchs/:idmatch/cotes/:idcote/bets', BetController.create);
 
 
 export default router;

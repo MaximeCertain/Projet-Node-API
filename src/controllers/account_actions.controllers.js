@@ -29,11 +29,11 @@ class AccountActionController {
             let account_actions = user.account_actions;
             let capital = user.capital;
             //updater le solde du compte
-            if (account_action.type === "DEPOSIT") {
-                capital = capital + account_action.amount;
+            if (request.body.type === "DEPOSIT") {
+                capital = capital + request.body.amount;
             } else {
-                if (capital >= account_action.amount) {
-                    capital = capital - account_action.amount;
+                if (capital >= request.body.amount) {
+                    capital = capital - request.body.amount;
                 } else{
                     body = {'message': "capital_too_low"};
                     return response.status(status).json(body);
@@ -44,7 +44,6 @@ class AccountActionController {
             );
             account_actions.push(account_action);
             user.account_actions = account_actions;
-
             user.capital = capital;
             await user.save();
             body = {'message': 'account_action created for user'};

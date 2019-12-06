@@ -17,7 +17,8 @@ const matchSchema = new Schema({
     }],
     //
     result:{
-        type: String
+        type: String,
+        default: ''
     }
 });
 
